@@ -1,0 +1,149 @@
+.donation-amount-list {
+	background-color: #00a65a;
+	border-radius: 05px;
+	padding: 3px 7px;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+}
+
+.donation-status-fail {
+	background-color: red;
+	border-radius: 05px;
+	padding: 3px 7px;
+	font-size: 13px;
+	font-weight: 700;
+	color: white;
+}
+.donation-status-success {
+	background-color: #00a65a;
+	border-radius: 05px;
+	padding: 3px 7px;
+	font-size: 13px;
+	font-weight: 700;
+	color: white;
+}
+.font-size13 {
+	font-size: 13px !important;
+}
+.font-size14 {
+	font-size: 14px !important;
+}
+.font-size16 {
+	font-size: 16px !important;
+}
+.font-size18 {
+	font-size: 18px !important;
+}
+.font-size20 {
+	font-size: 20px !important;
+}
+.font-bold {
+	font-weight: bold !important;
+}
+.text-bold {
+	font-weight: bold !important;
+}
+.text-700 {
+	font-weight: 700 !important;
+}
+.text-800 {
+	font-weight: 800 !important;
+}
+.text-900 {
+	font-weight: 900 !important;
+}
+.text-green {
+	color: green !important;
+}
+.text-orange {
+	color: orange !important;
+}
+.text-red {
+	color: red !important;
+}
+.color-333 {
+	color: #333 !important;
+}
+.padding-top5 {
+	padding-top: 5px !important;
+}
+.padding-top10 {
+	padding-top: 10px !important;
+}
+.padding-top20 {
+	padding-top: 20px !important;
+}
+.padding-top40 {
+	padding-top: 40px !important;
+}
+.padding-bottom5 {
+	padding-bottom: 5px !important;
+}
+.padding-bottom10 {
+	padding-bottom: 10px !important;
+}
+.padding-left5 {
+	padding-left: 5px !important;
+}
+.padding-left10 {
+	padding-left: 10px !important;
+}
+.padding-right5 {
+	padding-right: 5px !important;
+}
+.padding-right10 {
+	padding-right: 10px !important;
+}
+
+.padding-TB5 {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.padding-LR5 {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.border-radus {
+	border-radius: 8px;
+}
+
+.chart-legend li span {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-right: 5px;
+}
+.legend {
+	width: 10em;
+	border: 1px solid black;
+}
+.legend .title {
+	display: inline-block;
+	margin-bottom: 0.5em;
+	line-height: 1.2em;
+	padding: 0 0.3em;
+}
+.legend .color-sample {
+	display: inline-block;
+	float: none;
+	width: 1em;
+	height: 1em;
+	border: 2px solid; /* Comment out if you don't want to show the fillColor */
+	border-radius: 0.5em; /* Comment out if you prefer squarish samples */
+	margin-right: 0.5em;
+}
+.white-text {
+	color: #fff;
+}
+.text-centre1 {
+	text-align: center !important;
+}
+
+/*Shadow effect */
+.shadow {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+}
+.requiredInput {
+	color: #f00;
+}
