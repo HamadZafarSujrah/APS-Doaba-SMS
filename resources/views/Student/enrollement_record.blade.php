@@ -43,15 +43,19 @@
 											<th>Conatct Number</th>
 											<th>Email Adress</th>
 											<th>Adress</th>
+											<th>Section</th>
 											<th>Class</th>
 											<th>Total Fee</th>
+											<th>Discount</th>
+											<th>Fee after Discount</th>
+
 											<th>Edit</th>
-											<th>Delete</th>
+											{{-- <th>Delete</th> --}}
 										</tr>
 									</thead>
 									<tbody> @foreach ($items as $item)
 										<tr>
-											<td>{{ $item->id}}</td>
+											<td>{{ $item->std_id}}</td>
 											<td> <a href="{{url('/profile').'/'.$item->id }}">{{ $item->std_first_name}} {{ $item->std_last_name}}</a></td>
 											<td>{{ $item->cnic}}</td>
 											<td>{{ $item->dob}}</td>
@@ -60,14 +64,17 @@
 											<td>{{ $item->f_contact_number}}</td>
 											<td>{{ $item->email}}</td>
 											<td>{{ $item->address}}</td>
+											<td>{{ $item->class}}{{ $item->section}}</td>
 											<td>{{ $item->class}}</td>
 											<td>{{ $item->total_fee}}</td>
+											<td>{{ $item->discount}}</td>
+											<td>{{ $item->fee_payable}}</td>
 											<td>
-												<a href="{{ asset( '/edit_student').'/'. $item->id}}" class="btn btn-primary btn-sm">Edit</a>
+												<a href="{{ asset( '/edit_student').'/'. $item->id}}" class="btn btn-primary btn-sm"><i class="fa fa-pen"></i></a>
 											</td>
-									        <td>
-												<a href="{{ asset( '/delete_student').'/'. $item->id}}" class="btn btn-danger btn-sm">Delete</a>
-											</td>
+									        {{-- <td>
+												<a href="{{ asset( '/delete_student').'/'. $item->id}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+											</td> --}}
 										</tr> @endforeach </tbody>
 								</table>
 							</div>

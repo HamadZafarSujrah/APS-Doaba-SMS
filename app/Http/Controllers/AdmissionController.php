@@ -23,6 +23,13 @@ class AdmissionController extends Controller
   
         //insert into databsae
         $admission= new admission;
+        $max_idd = admission::orderBy('id', 'desc')->first();
+        if($max_idd == null)
+        { $id=1;  }
+        else{$id = $max_idd->id + 1;}
+
+
+        $admission->std_id = 'APS-'.$req->campus.'-'.$id;
         $admission->std_first_name = $req->std_first_name;
         $admission->std_last_name = $req->std_last_name;
         $admission->cnic = $req->cnic;
@@ -46,7 +53,9 @@ class AdmissionController extends Controller
         $admission->address = $req->address;
         $admission->tehsil = $req->tehsil;
         $admission->district = $req->district;
+        $admission->campus = $req->campus;
         $admission->class = $req->class;
+        $admission->section = $req->section;
         $admission->obtained_marks = $req->o_marks;
         $admission->total_marks = $req->t_marks;
         $admission->pre_school = $req->p_school;
@@ -73,7 +82,11 @@ class AdmissionController extends Controller
         $admission->sports_fee = $req->sports_fee;
         $admission->library_fee = $req->library_fee;
         $admission->lab_fee = $req->lab_fee;
+        $admission->other_fee = $req->other_fee;
         $admission->total_fee = $req->total_fee;
+        $admission->discount = $req->discount;
+        $admission->fee_payable = $req->fee_payable;
+        
        
         $save = $admission->save();
 

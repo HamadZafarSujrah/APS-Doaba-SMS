@@ -45,7 +45,7 @@
 									<ul class="list-group list-group-unbordered mb-3">
 										<li class="list-group-item"> <b>Contact Number</b> <a class="float-right">{{ $profile->f_contact_number}}</a> </li>
 										<li class="list-group-item"> <b>Class</b> <a class="float-right">{{ $profile->class}}</a> </li>
-										<li class="list-group-item"> <a href="{{ asset( '/edit_student').'/'. $profile->id}}" class="btn btn-primary btn-sm">Edit</a> <a href="{{ asset( '/delete_student').'/'. $profile->id}}" class="float-right btn btn-danger btn-sm">Delete</a> </li>
+										<li class="list-group-item"> <b>Edit Profile</b><a href="{{ asset( '/edit_student').'/'. $profile->id}}" class="float-right btn btn-primary btn-sm">Edit</a> </li>
 										
 
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\TeacherController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -40,6 +41,8 @@ Route::get('/profile/{id}',[AdmissionController::class,'profile_data'])->name('p
 Route::get('/edit_student/{id}',[AdmissionController::class,'edit_data'])->name('edit');
 Route::post('/update_record/{id}',[AdmissionController::class,'update_record'])->name('update');
 Route::get('/delete_student/{id}',[AdmissionController::class,'delete_record'])->name('delete');
-Route::view('/hiring','Faculty.teacher_hiring');  
+//Route::view('/hiring','Faculty.teacher_hiring');  
+Route::get('/hiring',[TeacherController::class,'teacher_hiring'])->name('hiring');
+Route::post('/hiring',[TeacherController::class,'save']);
 
 

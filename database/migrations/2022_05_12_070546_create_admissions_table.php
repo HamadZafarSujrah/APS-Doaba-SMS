@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
+            $table->string('std_id')->nullable();;
             $table->string('std_first_name');
             $table->string('std_last_name');
             $table->string('cnic')->unique();
             $table->date('dob');
             $table->string('gender');
-            $table->text('picture');
+            $table->text('picture')->nullable();
             $table->string('father_name');
             $table->string('father_occupation');
             $table->string('father_cnic');
@@ -31,7 +32,9 @@ return new class extends Migration
             $table->string('address');
             $table->string('tehsil');
             $table->string('district');
+            $table->string('campus');
             $table->string('class');
+            $table->string('section');
             $table->string('obtained_marks')->nullable();
             $table->string('total_marks')->nullable();
             $table->string('pre_school')->nullable();
@@ -39,12 +42,15 @@ return new class extends Migration
             $table->text('b_form_pic');
             $table->text('f_cnic_pic');
             $table->string('tution_fee');
-            $table->string('admission_fee');
+            $table->string('admission_fee')->nullable();
             $table->string('exam_fee')->nullable();
             $table->string('sports_fee')->nullable();
             $table->string('library_fee')->nullable();
             $table->string('lab_fee')->nullable();
+            $table->string('other_fee')->nullable();
             $table->string('total_fee');
+            $table->string('discount')->nullable();
+            $table->string('fee_payable')->nullable();
             $table->timestamps();
 
         });

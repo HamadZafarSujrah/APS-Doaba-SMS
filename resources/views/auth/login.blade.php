@@ -45,21 +45,16 @@
         </div>
         <span class="text-danger">@error('password'){{ $message }}@enderror</span>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Enter Your Password" name="password" >
+          <input type="password" class="form-control" placeholder="Enter Your Password" name="password" id="password">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+              <span ><i class="fa fa-eye" aria-hidden="true" onclick="toggle()"></i></span>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-8">
-            {{-- <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div> --}}
+            
           </div>
           <!-- /.col -->
           <div class="col-4">
@@ -92,6 +87,20 @@
 </div>
 <!-- /.login-box -->
 
+<script>
+var state= false;
+function toggle(){
+  if(state){
+    document.getElementById("password").setAttribute("type","password");
+    state= false;
+  }
+  else
+  {
+    document.getElementById("password").setAttribute("type","text");
+    state= true;
+  }
+}
+</script>
 
 </body>
 </html>

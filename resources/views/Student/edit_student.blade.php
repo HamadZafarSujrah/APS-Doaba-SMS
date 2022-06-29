@@ -192,11 +192,11 @@
 																			<div class="form-group">
 																				<label for="Gender">Tehsil<span class="requiredInput" style="color: red">*</span></label>
 																				<br>
-																				<select required style="width: 100%" class="form-control" name="tehsil" value="{{$student->tehsil}}">
-																					<option value="null"></option>
-																					<option>Mianwali</option>
-																					<option>Piplan</option>
-																					<option>Isa-Khel</option>
+																				<select required style="width: 100%" class="form-control" name="tehsil" >
+																					<option value="" ></option>
+																					<option @if ($student->tehsil == 'mianwali') selected @endif value="mianwali">Mianwali</option>
+																					<option @if ($student->tehsil == 'piplan') selected @endif value="piplan">Piplan</option>
+																					<option @if ($student->tehsil == 'isa_khel') selected @endif value="isa_khel">Isa-Khel</option>
 																				</select>
 																			</div>
 																		</div>
@@ -204,9 +204,9 @@
 																			<div class="form-group">
 																				<label for="Gender">District<span class="requiredInput" style="color: red">*</span></label>
 																				<br>
-																				<select required style="width: 100%" class="form-control" name="district" value="{{$student->district}}">
-																					<option value="null"></option>
-																					<option>Mianwali</option>
+																				<select required style="width: 100%" class="form-control" name="district" >
+																					<option value=""></option>
+																					<option @if ($student->district == 'mianwali') selected @endif value="mianwali">Mianwali</option>
 																				</select>
 																			</div>
 																		</div>
@@ -219,26 +219,27 @@
 																		<div>
 																			<h5><b>Academic Information</b></h5></div>
 																	</div>
+																	{{-- @dd($student->class) --}}
 																	<div class="card-body">
 																		<div class="row">
 																			<div class="col-md-4">
 																				<div class="form-group">
 																					<label for="Class">Class<span class="requiredInput" style="color: red">*</span></label>
 																					<br>
-																					<select required style="width: 100%" class="form-control" name="class" value="{{$student->class}}">
-																						<option value="null"></option>
-																						<option>Nursery</option>
-																						<option>Prep</option>
-																						<option>One</option>
-																						<option>Two</option>
-																						<option>Three</option>
-																						<option>Four</option>
-																						<option>Five</option>
-																						<option>Six</option>
-																						<option>Seven</option>
-																						<option>Eight</option>
-																						<option>Nine</option>
-																						<option>Ten</option>
+																					<select required style="width: 100%" class="form-control" name="class" >
+																						
+																						<option @if ($student->class == 'nursery') selected @endif value="nursery">Nursery</option>
+																						<option @if ($student->class == 'prep') selected @endif value="prep">Prep</option>
+																						<option @if ($student->class == 'one') selected @endif value="one">One</option>
+																						<option @if ($student->class == 'two') selected @endif value="two">Two</option>
+																						<option @if ($student->class == 'three') selected @endif value="three">Three</option>
+																						<option @if ($student->class == 'four') selected @endif value="four">Four</option>
+																						<option @if ($student->class == 'five') selected @endif value="five">Five</option>
+																						<option @if ($student->class == 'six') selected @endif value="six">Six</option>
+																						<option @if ($student->class == 'seven') selected @endif value="seven">Seven</option>
+																						<option @if ($student->class == 'eight') selected @endif value="eight">Eight</option>
+																						<option @if ($student->class == 'nine') selected @endif value="nine">Nine</option>
+																						<option @if ($student->class == 'ten') selected @endif value="ten">Ten</option>
 																					</select>
 																				</div>
 																			</div>
@@ -350,6 +351,7 @@
 																<br>
 																<label style="margin-top: 30px">Lab Fee (Annual) </label>
 																<br>
+																<label style="margin-top: 30px">Other Fee</label>
 																<br>
 																<label style="margin-top: 30px">Total Fee </label>
 															</div>
@@ -371,6 +373,8 @@
 																	<input type="number" id="library_fee" name="library_fee" class="form-control" value="{{$student->library_fee}}">
 																	<br>
 																	<input type="number" id="lab_fee" name="lab_fee" class="form-control" value="{{$student->lab_fee}}">
+																	<br>
+																	<input type="number" id="other_fee" name="other_fee" class="form-control" value="{{$student->other_fee}}">
 																	<br>
 																	<input type="text" id="total_fee" name="total_fee" class="form-control" value="{{$student->total_fee}}">
 																	<br> </div>
@@ -572,6 +576,17 @@
 						var library = $('#library_fee').val()
 						var lab = $('#lab_fee').val()
 						var total_fee = (parseInt(class_fee) + parseInt(admission) + parseInt(exam) + parseInt(sports) + parseInt(library) + parseInt(lab));
+						$('#total_fee').val(total_fee)
+					})
+					$('#other_fee').on('keyup', function() {
+						var tution = class_fee;
+						var admission = $('#admission_fee').val()
+						var exam = $('#exam_fee').val()
+						var sports = $('#sports_fee').val()
+						var library = $('#library_fee').val()
+						var lab = $('#lab_fee').val()
+						var other = $('#other_fee').val()
+						var total_fee = (parseInt(class_fee) + parseInt(admission) + parseInt(exam) + parseInt(sports) + parseInt(library) + parseInt(lab) + parseInt(other));
 						$('#total_fee').val(total_fee)
 					})
 				})
