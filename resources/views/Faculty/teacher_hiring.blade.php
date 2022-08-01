@@ -1,4 +1,6 @@
-@include('index')
+@extends('dashboard')
+
+@section('contant')
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,37 +8,22 @@
   </head>
   <body>
     <!-- Main content -->
-    <div class="card card-outline card-primary">
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <!-- general form elements -->
-              <div class="card card-success">
-                <div class="card-header text-center">
-                  <a href="" class='h1'>
-                    <b>Al-Hikma School</b>|Doaba </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-2"></div>
-          <div class="col-md-8"> @if (Session::get('success')) <div class="alert alert-success"> {{Session::get('success')}} </div> @endif @if (Session::get('fail')) <div class="alert alert-danger"> {{Session::get('fail')}} </div> @endif
+      
+          <div class="col-md-12">
+             @if (Session::get('success')) <div class="alert alert-success"> {{Session::get('success')}} </div> @endif @if (Session::get('fail')) <div class="alert alert-danger"> {{Session::get('fail')}} </div> @endif
             <!-- general form elements -->{{-- <div class="card card-outline card-success"> --}}
             <div class="card card-primary">
               <div class="card-header">
                 <div class="">
                   <h4>
                     <b> Teacher Hiring</b>
-                    <a href="{{ route('auth.logout')}}" class="float-sm-right breadcrumb-item "> Logout</a>
-                    <a href="{{url('/dashboard') }}" class="float-sm-right breadcrumb-item">Home\</a>
+                    {{-- <a href="{{ route('auth.logout')}}" class="float-sm-right breadcrumb-item "> Logout</a>
+                    <a href="{{url('/dashboard') }}" class="float-sm-right breadcrumb-item">Home\</a> --}}
                 </div>
                 </h4>
               </div>
@@ -982,3 +969,4 @@
 
   </body>
 </html>
+@endsection

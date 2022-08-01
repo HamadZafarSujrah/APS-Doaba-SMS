@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 use App\Models\admission;
+use App\Models\StudentBasicInfo;
+use App\Models\StudentAcademicInfo;
+use App\Models\StudentAttachment;
+use App\Models\StudentAdmissionFee;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\facades\file;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller
 {
-    function admission(){
-        return view('Student.enrollement');
-    }
+    // function admission(){
+    //     return view('Student.enrollement');
+    // }
     function save(Request $req){
 
         // dd('test');
@@ -23,18 +27,20 @@ class AdmissionController extends Controller
   
         //insert into databsae
         $admission= new admission;
-        $max_idd = admission::orderBy('id', 'desc')->first();
-        if($max_idd == null)
-        { $id=1;  }
-        else{$id = $max_idd->id + 1;}
 
+        $max_id = admission::orderBy('id', 'desc')->first();
+        if($max_id == null)
+        { $id=1;  }
+        else{$id = $max_id->id + 1;}
 
         $admission->std_id = 'APS-'.$req->campus.'-'.$id;
         $admission->std_first_name = $req->std_first_name;
         $admission->std_last_name = $req->std_last_name;
         $admission->cnic = $req->cnic;
         $admission->dob = $req->dob;
+        
         $admission->gender = $req->gender;
+
         if($req->hasfile('profile_picture')){
             $file= $req->file('profile_picture');
             $extention =$file->getClientOriginalExtension();
@@ -91,7 +97,7 @@ class AdmissionController extends Controller
         $save = $admission->save();
 
         if($save){
-            return redirect('enrollement')->with('success','new user has been added into Database!');
+            return redirect('enrollement_record')->with('success','new user has been added into Database!');
   
         } else
         {
@@ -101,6 +107,10 @@ class AdmissionController extends Controller
        
     } 
     
+    
+
+    }
+
 
     function fetch_data(){
         $users= admission::all();
@@ -206,7 +216,7 @@ class AdmissionController extends Controller
         $save = $update->update();
         
         if($save){
-            return redirect('enrollement')->with('success','Data is Updated Successfully');
+            return redirect('enrollement_record')->with('success','Data is Updated Successfully');
   
         } else
         {
@@ -242,4 +252,4 @@ class AdmissionController extends Controller
         return redirect('enrollement')->with('success','Data is Deleted Successfully');
     }
 
-}
+

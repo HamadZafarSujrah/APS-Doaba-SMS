@@ -22,6 +22,8 @@
 	<link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
 	<!-- Theme style -->
 	<link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+	<!--jquery ui-->
+	<link rel="stylesheet" href="{{ asset('dist/css/jquery-ui.theme.min.css') }}">
 	<!-- overlayScrollbars -->
 	<link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 	<!-- Daterange picker -->
@@ -87,7 +89,9 @@
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-
+<!--jquery ui-->
+<script src="{{ asset('dist/js/jquery-ui.js') }}"></script>
+<script src="{{ asset('dist/js/jquery-ui.min.js') }}"></script>
 <!-- Select2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js" integrity="sha512-RtZU3AyMVArmHLiW0suEZ9McadTdegwbgtiQl5Qqo9kunkVg1ofwueXD8/8wv3Af8jkME3DDe3yLfR8HSJfT2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -96,7 +100,7 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('dist/js/demo.js') }}"></script>
+// <script src="{{ asset('dist/js/demo.js') }}"></script>
  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
  <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script> 
 

@@ -1,12 +1,15 @@
+@extends('dashboard')
+
+@section('contant')
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Profile</title> @include('index') </head>
+	<title>Profile</title>  </head>
 
-<body> {{-- @include('header') @include('MainSidebar') --}}
+<body> 
 	<div class="col-md-12">
 		<!-- Content Wrapper. Contains page content -->
 		{{-- <div class="content-wrapper"> --}}
@@ -20,8 +23,8 @@
 									<h1>Profile</h1> </div>
 								<div class="col-sm-6">
 									<ol class="breadcrumb float-sm-right">
-										<li class="breadcrumb-item"><a href="{{url('/dashboard') }}">Home</a></li>
-										<li class="breadcrumb-item active"> <a href="{{ route('auth.logout')}}">Logout</a> </li>
+										{{-- <li class="breadcrumb-item"><a href="{{url('/dashboard') }}">Home</a></li>
+										<li class="breadcrumb-item active"> <a href="{{ url('enrollement_record')}}">Back</a> </li> --}}
 									</ol>
 								</div>
 							</div>
@@ -41,11 +44,13 @@
 									<div class="text-center"> <img class=" img-fluid img-reponsive" src="{{ asset('Students/Profile_Pictures/'.$profile->picture )  }}" alt="User profile picture" width="280px" height="350"> </div>
 									<h4 class="profile-username text-center text-bold">{{ $profile->std_first_name}} {{ $profile->std_last_name}}</h4>
 									<h2 class="profile-username text-center">{{ $profile->father_name}}</h2>
+									<h2 class="profile-username text-center">{{ $profile->std_id}}</h2>
 									<p class="text-muted text-center"></p>
 									<ul class="list-group list-group-unbordered mb-3">
 										<li class="list-group-item"> <b>Contact Number</b> <a class="float-right">{{ $profile->f_contact_number}}</a> </li>
-										<li class="list-group-item"> <b>Class</b> <a class="float-right">{{ $profile->class}}</a> </li>
-										<li class="list-group-item"> <b>Edit Profile</b><a href="{{ asset( '/edit_student').'/'. $profile->id}}" class="float-right btn btn-primary btn-sm">Edit</a> </li>
+										<li class="list-group-item"> <b>Campus</b> <a class="float-right">{{ $profile->campus}}</a> </li>
+										<li class="list-group-item"> <b>Class</b> <a class="float-right">{{ $profile->class}}({{ $profile->section}})</a> </li>
+										<li class="list-group-item"> <b>Edit Profile</b><a href="{{ asset( '/edit_student').'/'. $profile->id}}" class="btn btn-primary btn-sm float-right"><i class="fa fa-pen"></i></a>
 										
 
 
@@ -120,9 +125,10 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label>Class</label>
-														<input type="text" d class="form-control" value="{{ $profile->class}}" disabled>
+														<input type="text" d class="form-control" value="{{ $profile->class}}({{ $profile->section}})" disabled>
 														<br> </div>
 												</div>
+												
 												<div class="col-md-3">
 													<div class="form-group">
 														<label>Father Name</label>
@@ -260,7 +266,10 @@
 																<th>Sports Fee</th>
 																<th>Library Fee</th>
 																<th>Lab Fee</th>
-																<th> Total Fee</th>
+																<th>Other Fee</th>
+																<th>Total Fee</th>
+																<th>Discount</th>
+																<th>Fee After Discount</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -271,7 +280,11 @@
 																<td>{{ $profile->sports_fee}}</td>
 																<td>{{ $profile->library_fee}}</td>
 																<td>{{ $profile->lab_fee}}</td>
+																<td>{{ $profile->other_fee}}</td>
 																<td ><b>{{ $profile->total_fee}}</b></td>
+																<td>{{ $profile->discount}}</td>
+																<td ><b>{{ $profile->fee_payable}}</b></td>
+																
 															</tr>
 														</tbody>
 													</table>
@@ -304,3 +317,4 @@
 </body>
 
 </html>
+@endsection

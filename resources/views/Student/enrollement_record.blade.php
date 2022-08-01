@@ -1,4 +1,7 @@
-@include('index')
+@extends('dashboard')
+
+@section('contant')
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,11 +10,15 @@
 </head>
 
 <body>
-	<section class="content">
+	<div class="row">
+	<div class="col-md-12">
+	<section class="content form-group">
 		<div class="container-fluid">
 			<div class="row">
 				<!-- left column -->
 				<div class="col-md-12">
+				
+					
 					<!-- general form elements -->{{--
 					<div class="card card-outline card-success"> --}}
 						<section class="content-header">
@@ -24,14 +31,14 @@
 											<div class="col-sm-6">
 												<ol class="breadcrumb float-sm-right">
 													<li class="breadcrumb-item"><a href="{{url('/admission') }}">Add New Student</a></li>
-													<li class="breadcrumb-item"><a href="{{url('/dashboard') }}">Home</a></li>
-													<li class="breadcrumb-item active"> <a href="{{ route('auth.logout')}}">Logout</a> </li>
+													{{-- <li class="breadcrumb-item"><a href="{{url('/dashboard') }}">Home</a></li>
+													<li class="breadcrumb-item active"> <a href="{{ route('auth.logout')}}">Logout</a> </li> --}}
 												</ol>
 											</div>
 										</div>
 									</div>
 								</div>
-								<table class="table table-border tablle-striped" border="1">
+								<table class="table table-border tablle-striped form-group" border="1" >
 									<thead>
 										<tr>
 											<th>Student Id</th>
@@ -41,9 +48,9 @@
 											<th>Gender</th>
 											<th>Father Name</th>
 											<th>Conatct Number</th>
-											<th>Email Adress</th>
+										
 											<th>Adress</th>
-											<th>Section</th>
+									
 											<th>Class</th>
 											<th>Total Fee</th>
 											<th>Discount</th>
@@ -53,22 +60,27 @@
 											{{-- <th>Delete</th> --}}
 										</tr>
 									</thead>
-									<tbody> @foreach ($items as $item)
+
+									<tbody> @foreach($items as $item)
 										<tr>
+											{{-- @dd($item) --}}
+											{{-- {{ $item->cnic }} --}}
 											<td>{{ $item->std_id}}</td>
-											<td> <a href="{{url('/profile').'/'.$item->id }}">{{ $item->std_first_name}} {{ $item->std_last_name}}</a></td>
-											<td>{{ $item->cnic}}</td>
-											<td>{{ $item->dob}}</td>
-											<td>{{ $item->gender}}</td>
-											<td>{{ $item->father_name}}</td>
-											<td>{{ $item->f_contact_number}}</td>
-											<td>{{ $item->email}}</td>
-											<td>{{ $item->address}}</td>
-											<td>{{ $item->class}}{{ $item->section}}</td>
-											<td>{{ $item->class}}</td>
-											<td>{{ $item->total_fee}}</td>
-											<td>{{ $item->discount}}</td>
-											<td>{{ $item->fee_payable}}</td>
+											<td> <a href="{{url('/profile').'/'.$item->id }}">{{ $item->FirstName}} {{ $item->LastName}}</a></td>
+											<td>{{ $item->Cnic}}</td>
+											<td>{{ $item->DOB}}</td>
+											<td>{{ $item->Gender}}</td>
+											<td>{{ $item->FatherName}}</td>
+											<td>{{ $item->ContactNumber}}</td>
+										
+											<td>{{ $item->Address}}</td>
+											{{-- @dd ($item->studentAcademicInfos{{Class}}) --}}
+
+											
+											<td>{{ $item->GetLatestClass()}}</td>
+											<td>{{ $item->TotalFee}}</td>
+											<td>{{ $item->Discount}}</td>
+											<td>{{ $item->FeePayable}}</td>
 											<td>
 												<a href="{{ asset( '/edit_student').'/'. $item->id}}" class="btn btn-primary btn-sm"><i class="fa fa-pen"></i></a>
 											</td>
@@ -83,6 +95,11 @@
 				</div>
 			</div>
 		</div>
-	</section> {{-- </body>
+	</section>
+	</div>
+	</div>
 
-</html> --}}
+ </body>
+
+</html>
+@endsection

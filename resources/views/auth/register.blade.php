@@ -1,13 +1,17 @@
-@include('index')
+
+@extends('dashboard')
+
+@section('contant')
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Registration of Users</title>
 </head>
-<body class="hold-transition register-page">
-<div class="register-box">
-  
-    <div class="card card-outline card-success">
+
+<body class="hold-transition ">
+<div class="register-box-center">
+  <div class="">
+    <div class="card card-outline card-success ">
       
       <div class="card-header text-center">
         
@@ -56,16 +60,14 @@
           </div>
         </div>
        
-        <span class="text-danger">@error('password'){{ $message }}@enderror</span>
-        <div class="input-group mb-3"> 
-          <input type="password" class="form-control" name="password" placeholder="Password">
+        
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Enter Your Password" name="password" id="password">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-             
+              <span ><i class="fa fa-eye" aria-hidden="true" onclick="toggle()"></i></span>
             </div>
           </div>
-          
         </div>
         {{-- <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Retype password">
@@ -109,7 +111,25 @@
     <!-- /.form-box -->
   </div><!-- /.card -->
 </div>
+</div>
 <!-- /.register-box -->
-
-</body>
+<script>
+  var state= false;
+  function toggle(){
+    if(state){
+      document.getElementById("password").setAttribute("type","password");
+      state= false;
+    }
+    else
+    {
+      document.getElementById("password").setAttribute("type","text");
+      state= true;
+    }
+  }
+  </script>
+  </body>
 </html>
+
+
+@endsection
+

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('active')->default(false);
+            $table->tinyInteger('is_admin')->default(0);
          
 
             $table->timestamps();

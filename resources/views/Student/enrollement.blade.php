@@ -1,34 +1,30 @@
-@include('index')
+@extends('dashboard')
+
+@section('contant')
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>admission Form</title>
+    <style type="text/css">
+      .ui-datepicker {
+          background: #28a745;
+          border: 2px solid #007bff;
+          color: #343a40;
+         
+          width: 17em; /*what ever width you want*/
+}
+     
+      </style>
   </head>
   <body>
     <!-- Main content -->
-    <div class="card card-outline card-primary">
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <!-- general form elements -->
-              <div class="card card-success">
-                <div class="card-header text-center">
-                  <a href="" class='h1'>
-                    <b>Al-Hikma School</b>|Doaba </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-2"></div>
-          <div class="col-md-8"> @if (Session::get('success')) <div class="alert alert-success"> {{Session::get('success')}} </div> @endif @if (Session::get('fail')) <div class="alert alert-danger"> {{Session::get('fail')}} </div> @endif
+          
+          <div class="col-md-12"> @if (Session::get('success')) <div class="alert alert-success"> {{Session::get('success')}} </div> @endif @if (Session::get('fail')) <div class="alert alert-danger"> {{Session::get('fail')}} </div> @endif
             <!-- general form elements -->{{-- <div class="card card-outline card-success"> --}}
             <div class="card card-primary">
               <div class="card-header">
@@ -40,7 +36,9 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('admission') }}" method="post" enctype="multipart/form-data"> @csrf <div class="card-body"> {{-- <----------------------------Personal Information---------------------------------> --}}
+              <form action="{{ route('saveform') }}" method="post" enctype="multipart/form-data"> @csrf <div class="card-body"> 
+                @csrf
+                {{-- <----------------------------Personal Information---------------------------------> --}}
                   <div class="row">
                     <div class="col-md-12">
                       <div class="card card-outline card-success">
@@ -52,7 +50,11 @@
                         <div class="card-body">
                           <div class="row">
                             <div class="col-md-4">
-                              <div style="height: 1cm"></div>
+                              <div class="form-group" >
+                                <label for="Student Name">Admission Number <span class="requiredInput" style="color: red">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="std_admission_number" placeholder="Enter Admission Number" required>
+                              </div>
                               <div class="form-group">
                                 <label for="Student Name">Student Name <span class="requiredInput" style="color: red">*</span>
                                 </label>
@@ -68,14 +70,7 @@
                               </div>
                             </div>
                             <div class="col-md-4"></div>
-                            <div class="col-md-4"> 
-                              {{-- <div class="card-body">
-																						<div class="container mt-3">
-																							<div class="card" style="width:250px;height:260px">
-																								<img class="card-img-top" alt="profile Picture">
-																								</div>
-																							</div>
-																						</div> --}}
+                            <div class="col-md-4">
                               <div id="preview"></div>
                             </div>
                           </div>
@@ -88,7 +83,7 @@
                                   <span class="input-group-addon">
                                     <i class=""></i>
                                   </span>
-                                  <input type="date" name="dob" class="form-control border-primary controls" required>
+                                  <input type="text" name="dob" id="Date" class="form-control border-primary controls " placeholder="dd-month-yyyy"  required>
                                 </div>
                               </div>
                             </div>
@@ -113,6 +108,27 @@
                               </div>
                             </div>
                           </div>
+
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="Father Name">Cast 
+                                </label>
+                                <input type="text" class="form-control" id="cast" name="cast" placeholder="Enter Student Cast" class="form-control">
+                                <br>
+                              </div>
+                            </div>
+                         
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Father Name">Religion <span class="requiredInput" style="color: red">*</span>
+                              </label>
+                              <input type="text" class="form-control" id="religion" name="religion" placeholder="Enter Student Religion" required class="form-control">
+                              <br>
+                            </div>
+                          </div>
+                        </div>
                         </div>
                       </div> {{-- <----------------------------Parental Information---------------------------------> --}}
                       <div class="card card-outline card-success">
@@ -159,12 +175,20 @@
                                 <br>
                               </div>
                             </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="Caste">Guardian Cnic Number<span class="requiredInput" style="color: red">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="guardian_cnic_number" name="guardian_cnic" placeholder="Enter Guardian name" required class="form-control">
+                                <br>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div> {{-- <----------------------------Contact Information---------------------------------> --}}
                       <div class="card card-outline card-success">
                         <div class="card-header">
-                          <div 
+                          <div>
                           <h5>
                             <b>Contact Information</b>
                             </h5>
@@ -174,7 +198,7 @@
                           <div class="row">
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label>1st Contact Number <span class="requiredInput" style="color: red">*</span>
+                                <label>Contact Number <span class="requiredInput" style="color: red">*</span>
                                 </label>
                                 <div class="input-group">
                                   <div class="input-group-prepend">
@@ -182,20 +206,20 @@
                                       <i class="fas fa-phone"></i>
                                     </span>
                                   </div>
-                                  <input type="text" class="form-control" id="f_contact_number" name="f_contact_number" placeholder="03XX-XXXXXXX" required class="form-control" maxlength="12">
+                                  <input type="text" class="form-control" id="f_contact_number" name="contact_number" placeholder="03XX-XXXXXXX" required class="form-control" maxlength="12">
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label>2nd Contact Number</label>
+                                <label>Other Contact Number</label>
                                 <div class="input-group">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">
                                       <i class="fas fa-phone"></i>
                                     </span>
                                   </div>
-                                  <input type="text" class="form-control" placeholder="03XX-XXXXXXX" id="s_contact_number" name="s_contact_number" maxlength="12">
+                                  <input type="text" class="form-control" placeholder="03XX-XXXXXXX" id="s_contact_number" name="other_contact_number" maxlength="12">
                                 </div>
                               </div>
                             </div>
@@ -208,7 +232,7 @@
                                       <i class="fas fa-envelope"></i>
                                     </span>
                                   </div>
-                                  <input type="email" class="form-control" placeholder="Enter Email address" name="email_address">
+                                  <input type="email" class="form-control" placeholder="Enter Email address" name="email">
                                 </div>
                               </div>
                             </div>
@@ -276,7 +300,7 @@
                                 </label>
                                 <br>
                                 <select style="width: 100%" class="form-control" name="campus" required>
-                                  <option value="" selected>Select Class</option>
+                                  <option value="" selected>Select Campus</option>
                                   <option value="Boys">Boys Campus</option>
                                   <option value="Girls">Girls Campus</option>
                                 </select>
@@ -289,18 +313,18 @@
                                 <br>
                                 <select required style="width: 100%" class="form-control" name="class" id="class">
                                   <option value="" selected>Select Class</option>
-                                  <option value="nursery">Nursery</option>
-                                  <option value="prep">Prep</option>
-                                  <option value="one">One</option>
-                                  <option value="two">Two</option>
-                                  <option value="three">Three</option>
-                                  <option value="four">Four</option>
-                                  <option value="five">Five</option>
-                                  <option value="six">Six</option>
-                                  <option value="seven">Seven</option>
-                                  <option value="eight">Eight</option>
-                                  <option value="nine">Nine</option>
-                                  <option value="ten">Ten</option>
+                                  <option value="Nursery">Nursery</option>
+                                  <option value="Prep">Prep</option>
+                                  <option value="One">One</option>
+                                  <option value="Two">Two</option>
+                                  <option value="Three">Three</option>
+                                  <option value="Four">Four</option>
+                                  <option value="Five">Five</option>
+                                  <option value="Six">Six</option>
+                                  <option value="Seven">Seven</option>
+                                  <option value="Eight">Eight</option>
+                                  <option value="Nine">Nine</option>
+                                  <option value="Ten">Ten</option>
                                 </select>
                               </div>
                             </div>
@@ -313,6 +337,7 @@
                                   <option value="" selected>Select Section</option>
                                   <option value="A">A</option>
                                   <option value="B">B</option>
+                                  <option value="C">C</option>
                                 </select>
                               </div>
                             </div>
@@ -322,21 +347,21 @@
                             <div class="col-md-4" id="obtained_marks">
                               <div class="form-group">
                                 <label for="Caste">Obtained Marks in Previous Class</label>
-                                <input type="number" class="form-control" name="o_marks" id="o_marks" placeholder="" class="form-control">
+                                <input type="number" class="form-control" name="obtained_marks" id="o_marks" placeholder="" class="form-control">
                                 <br>
                               </div>
                             </div>
                             <div class="col-md-4" id="total_marks">
                               <div class="form-group">
                                 <label for="Father Name">Total marks in Previous Class</label>
-                                <input type="number" class="form-control" name="t_marks" id="t_marks" placeholder="" class="form-control">
+                                <input type="number" class="form-control" name="total_marks" id="t_marks" placeholder="" class="form-control">
                                 <br>
                               </div>
                             </div>
                             <div class="col-md-4" id="previous_school_name">
                               <div class="form-group">
                                 <label for="Previous School Name">Previous School Name</label>
-                                <input type="text" class="form-control" name="p_school" id="p_school" placeholder="" class="form-control">
+                                <input type="text" class="form-control" name="previous_school_name" id="p_school" placeholder="" class="form-control">
                                 <br>
                               </div>
                             </div> 
@@ -345,13 +370,14 @@
                             <div class="col-md-4" id="previous_school_registration">
                               <div class="form-group">
                                 <label for="Previous School Name">Previous School Registration Number</label>
-                                <input type="text" class="form-control" name="p_school_reg" id="p_school_reg" placeholder="" class="form-control">
+                                <input type="text" class="form-control" name="previous_school_registration_number" id="p_school_reg" placeholder="" class="form-control">
                                 <br>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div> {{-- <----------------------------Attachments---------------------------------> --}}
+                      </div> 
+                      {{-- <----------------------------Attachments---------------------------------> --}}
                       <div class="card card-outline card-success">
                         <div class="card-header">
                           <div>
@@ -366,7 +392,7 @@
                               <div class="form-group">
                                 <label>B-form <span class="requiredInput" style="color: red">*</span>
                                 </label>
-                                <input type="file" name="b_form_pic" id="b_form_pic" required class="form-control">
+                                <input type="file" name="b_form_picture" id="b_form_pic" required class="form-control">
                               </div>
                             </div>
                             <div class="col-md-2"></div>
@@ -377,14 +403,42 @@
                           <div class="row" id="father_cnic_attachment">
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label>Father Cnic <span class="requiredInput" style="color: red">*</span>
+                                <label>Guardian Cnic <span class="requiredInput" style="color: red">*</span>
                                 </label>
-                                <input type="file" name="f_cnic_pic" id="f_cnic_pic" required class="form-control">
+                                <input type="file" name="guardian_cnic_picture" id="guardian_cnic_pic" required class="form-control">
                               </div>
                             </div>
                             <div class="col-md-2"></div>
                             <div class="col-md-6">
-                              <div class="form-group" id="f_cnic_preview"></div>
+                              <div class="form-group" id="guardian_cnic_preview"></div>
+                            </div>
+                          </div>
+
+                          <div class="row" id="death_certificate_attachment">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Father Death Certificate <span class="requiredInput" style="color: red">*</span>
+                                </label>
+                                <input type="file" name="father_death_certificate" id="death_certificate_pic" required class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                              <div class="form-group" id="death_certificate_preview"></div>
+                            </div>
+                          </div>
+
+                          <div class="row" id="school_certificate_attachment">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Previous School Certificate <span class="requiredInput" style="color: red">*</span>
+                                </label>
+                                <input type="file" name="previous_school_certificate" id="school_certificate_pic" required class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-6">
+                              <div class="form-group" id="school_certificate_preview"></div>
                             </div>
                           </div>
                           <div class="row">
@@ -406,8 +460,10 @@
                                     <div class="row">
                                       <select name="attachment_category" id="attachment_category" class="form-control">
                                         <option selected value="" disabled>Select Attachment Category</option>
-                                        <option value="B_Form">B-Form</option>
-                                        <option value="Father_Cnic">Father-CNIC</option>
+                                        <option value="B_Form">B Form</option>
+                                        <option value="Father_Cnic">Guardian CNIC</option>
+                                        <option value="Death_Certificate">Father Death certificate</option>
+                                        <option value="School_Certificate">Previous School certificate</option>
                                       </select>
                                     </div>
                                   </div>
@@ -441,18 +497,18 @@
                             <br>
                             <select class="form-control" id="select-class" name="select_class" required style="width: 50%">
                               <option disabled selected>Select Class</option>
-                              <option value="nursery">Nursery</option>
-                              <option value="prep">Prep</option>
-                              <option value="one">One</option>
-                              <option value="two">Two</option>
-                              <option value="three">Three</option>
-                              <option value="four">Four</option>
-                              <option value="five">Five</option>
-                              <option value="six">Six</option>
-                              <option value="seven">Seven</option>
-                              <option value="eight">Eight</option>
-                              <option value="nine">Nine</option>
-                              <option value="ten">Ten</option>
+                              <option value="Nursery">Nursery</option>
+                              <option value="Prep">Prep</option>
+                              <option value="One">One</option>
+                              <option value="Two">Two</option>
+                              <option value="Three">Three</option>
+                              <option value="Four">Four</option>
+                              <option value="Five">Five</option>
+                              <option value="Six">Six</option>
+                              <option value="Seven">Seven</option>
+                              <option value="Eight">Eight</option>
+                              <option value="Nine">Nine</option>
+                              <option value="Ten">Ten</option>
                             </select>
                           </div>
                         </div>
@@ -493,7 +549,7 @@
                               <br>
                               <input type="number" id="admission_fee" name="admission_fee" class="form-control" required>
                               <br>
-                              <input type="number" id="exam_fee" name="exam_fee" class="form-control">
+                              <input type="number" id="exam_fee" name="examination_fee" class="form-control">
                               <br>
                               <input type="number" id="sports_fee" name="sports_fee" class="form-control">
                               <br>
@@ -565,9 +621,9 @@
     </script>
     <script type="text/javascript">
       $(document).ready(function() {
-        $('#f_cnic_pic').on('change', function getImagePreview() {
+        $('#guardian_cnic_pic').on('change', function getImagePreview() {
           var image = URL.createObjectURL(event.target.files[0]);
-          var imagediv = document.getElementById('f_cnic_preview');
+          var imagediv = document.getElementById('guardian_cnic_preview');
           var newimg = document.createElement('img');
           imagediv.innerHTML = '';
           newimg.src = image;
@@ -577,8 +633,22 @@
         })
       })
     </script>
+    {{--<--------------------------------------------Date layout--------------------------------------------------------> --}}
+   <script>
+    $(document).ready(function(){
+      $('#Date').datepicker({
+      dateFormat: "dd-MM-yy",
+      changeMonth: true, 
+      changeYear: true,
+      showButtonPanel: true,
+      width:true,        
+      yearRange: "-20:+0",
+      });
+    })
+   </script>
     {{--<--------------------------------------------Cnic layout--------------------------------------------------------> --}}
-    <script type="text/javascript">
+
+   <script type="text/javascript">
       $(document).ready(function() {
         $('#cnic').keypress(function() {
           var cnic = $('#cnic').val();
@@ -626,40 +696,40 @@
         $('#select-class').on('change', function() {
           var selected_class = this.value;
           switch (selected_class) {
-            case 'nursery':
+            case 'Nursery':
+              class_fee = 750;
+              break;    
+            case 'Prep':
               class_fee = 750;
               break;
-            case 'prep':
+            case 'One':
               class_fee = 750;
               break;
-            case 'one':
+            case 'Two':
               class_fee = 750;
               break;
-            case 'two':
+            case 'Three':
               class_fee = 750;
               break;
-            case 'three':
+            case 'Four':
               class_fee = 750;
               break;
-            case 'four':
+            case 'Five':
               class_fee = 750;
               break;
-            case 'five':
-              class_fee = 750;
-              break;
-            case 'six':
+            case 'Six':
               class_fee = 1050;
               break;
-            case 'seven':
+            case 'Seven':
               class_fee = 1050;
               break;
-            case 'eight':
+            case 'Eight':
               class_fee = 1050;
               break;
-            case 'nine':
+            case 'Nine':
               class_fee = 1450;
               break;
-            case 'ten':
+            case 'Ten':
               class_fee = 1450;
               break;
           }
@@ -762,16 +832,18 @@
       $("#previous_school_registration").hide();
       $(function() {
         $("#class").change(function() {
-          if ($(this).val() != "nursery") {
-            $("#obtained_marks").show();
-            $("#total_marks").show();
-            $("#previous_school_name").show();
-            $("#previous_school_registration").show();
-          } else {
+          if ($(this).val() == "Nursery") {
             $("#obtained_marks").hide();
             $("#total_marks").hide();
             $("#previous_school_name").hide();
             $("#previous_school_registration").hide();
+          } 
+          else 
+          {
+            $("#obtained_marks").show();
+            $("#total_marks").show();
+            $("#previous_school_name").show();
+            $("#previous_school_registration").show();
           }
         });
       });
@@ -779,6 +851,8 @@
     <script type="text/javascript">
       $("#B_form_attachment").hide();
       $("#father_cnic_attachment").hide();
+      $("#death_certificate_attachment").hide();
+      $("#school_certificate_attachment").hide();
       $(function() {
         $("#attachment_category").change(function() {
           switch (this.value) {
@@ -788,9 +862,15 @@
             case 'Father_Cnic':
               $("#father_cnic_attachment").show();
               break;
+              case 'Death_Certificate':
+              $("#death_certificate_attachment").show();
+              break;
+              case 'School_Certificate':
+              $("#school_certificate_attachment").show();
           }
         });
       });
     </script>
   </body>
 </html>
+@endsection
