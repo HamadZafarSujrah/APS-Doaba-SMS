@@ -127,7 +127,7 @@ class EnrollementController extends Controller
 
     }
     function fetch_data(){
-        $student= StudentBasicInfo::all();
+        $student= StudentBasicInfo::with('studentAcademicInfos', 'studentAttachments','studentAdmissionFees')->get();
     //    $academic= $student->studentAcademicInfos;
     //     $attachment= $student->studentAttachments;
     //     $fee= $student->studentAdmissionFees;

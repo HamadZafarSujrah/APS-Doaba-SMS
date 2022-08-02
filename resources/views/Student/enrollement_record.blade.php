@@ -47,15 +47,9 @@
 											<th>Date of Birth</th>
 											<th>Gender</th>
 											<th>Father Name</th>
-											<th>Conatct Number</th>
-										
-											<th>Adress</th>
-									
+											<th>Conatct Number</th>										
+											<th>Adress</th>									
 											<th>Class</th>
-											<th>Total Fee</th>
-											<th>Discount</th>
-											<th>Fee after Discount</th>
-
 											<th>Edit</th>
 											{{-- <th>Delete</th> --}}
 										</tr>
@@ -63,24 +57,18 @@
 
 									<tbody> @foreach($items as $item)
 										<tr>
-											{{-- @dd($item) --}}
-											{{-- {{ $item->cnic }} --}}
+											
 											<td>{{ $item->std_id}}</td>
 											<td> <a href="{{url('/profile').'/'.$item->id }}">{{ $item->FirstName}} {{ $item->LastName}}</a></td>
 											<td>{{ $item->Cnic}}</td>
 											<td>{{ $item->DOB}}</td>
 											<td>{{ $item->Gender}}</td>
 											<td>{{ $item->FatherName}}</td>
-											<td>{{ $item->ContactNumber}}</td>
-										
+											<td>{{ $item->ContactNumber}}</td>										
 											<td>{{ $item->Address}}</td>
-											{{-- @dd ($item->studentAcademicInfos{{Class}}) --}}
-
+											@dd ($item->studentAcademicInfos)											
+											<td>{{($item->studentAcademicInfos)}}</td>
 											
-											<td>{{ $item->GetLatestClass()}}</td>
-											<td>{{ $item->TotalFee}}</td>
-											<td>{{ $item->Discount}}</td>
-											<td>{{ $item->FeePayable}}</td>
 											<td>
 												<a href="{{ asset( '/edit_student').'/'. $item->id}}" class="btn btn-primary btn-sm"><i class="fa fa-pen"></i></a>
 											</td>
